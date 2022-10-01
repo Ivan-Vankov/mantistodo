@@ -10,14 +10,33 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:mantistodo.helloWorld"
+    "onCommand:mantistodo.newmantistodo"
   ],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": [
+      {
+          "title": "MantisTODO",
+          "properties": {
+              "conf.mantistodo.baseFolderPath": {
+                  "type": "string",
+                  "default": "",
+                  "description": "The file storage path to BIF-Source folder.",
+                  "scope": "application"
+              }
+          }
+      }
+    ],
     "commands": [
       {
-        "command": "mantistodo.helloWorld",
-        "title": "Hello World"
+        "command": "mantistodo.newmantistodo",
+        "title": "New Mantis TODO"
+      }
+    ],
+    "keybindings": [
+      {
+          "command": "mantistodo.newmantistodo",
+          "key": "ctrl+alt+m"
       }
     ]
   },
