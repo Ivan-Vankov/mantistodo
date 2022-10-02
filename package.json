@@ -1,6 +1,6 @@
 {
-  "name": "mantistodo",
-  "displayName": "Mantis TODO generator",
+  "name": "todogenerator",
+  "displayName": "TODO Generator",
   "description": "Boilerplate TODO .txt file generator",
   "publisher": "Vaflov",
   "keywords": [
@@ -18,22 +18,29 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:mantistodo.newmantistodo"
+    "onCommand:todogenerator.generate_todo"
   ],
   "icon": "images/icon.png",
   "main": "./dist/extension.js",
   "contributes": {
     "configuration": [
       {
-          "title": "Mantis TODO",
+          "title": "TODO Generator",
           "properties": {
-              "conf.mantistodo.baseFolderPath": {
+              "conf.todogenerator.todoText": {
+                "type": "string",
+                "editPresentation": "multilineText",
+                "default": "Notes:\n    \n    \nTo look at:\n    \n    \nTODO:\n    \n    \nBugs:\n    \n    \nQuestions:\n    \n    \nSteps to reproduce:\n    \n    \nTo debug with:\n    \n    ",
+                "description": "The TODO boilerplate text.",
+                "scope": "application"
+              },
+              "conf.todogenerator.baseFolderPath": {
                 "type": "string",
                 "default": "",
                 "description": "The base folder path for TODOs.",
                 "scope": "application"
               },
-              "conf.mantistodo.emptyPatchSuffix": {
+              "conf.todogenerator.emptyPatchSuffix": {
                 "type": "string",
                 "default": "0",
                 "description": "Suffix for the optional .patch file. Keep empty to skip .patch file creation.",
@@ -44,23 +51,21 @@
     ],
     "commands": [
       {
-				"command": "mantistodo.newmantistodo",
-				"title": "New Mantis TODO",
-				"shortTitle": "Mantis TODO",
+				"command": "todogenerator.generate_todo",
+				"title": "TODO File",
 				"category": "Create"
 			}
     ],
 		"menus": {
 			"file/newFile": [
 				{
-					"command": "mantistodo.newmantistodo",
-          "description": "test" 
+					"command": "todogenerator.generate_todo"
 				}
 			]
     },
     "keybindings": [
       {
-        "command": "mantistodo.newmantistodo",
+        "command": "todogenerator.generate_todo",
         "key": "ctrl+alt+m"
       }
     ]

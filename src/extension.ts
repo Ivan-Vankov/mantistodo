@@ -1,47 +1,13 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const baseFolderPathConf = "conf.mantistodo.baseFolderPath";
-const emptyPatchSuffixConf = "conf.mantistodo.emptyPatchSuffix";
+const todoTextConf         = "conf.todogenerator.todoText";
+const baseFolderPathConf   = "conf.todogenerator.baseFolderPath";
+const emptyPatchSuffixConf = "conf.todogenerator.emptyPatchSuffix";
 
-const todoBoilerplateText = `Notes:
-    
-    
-To look at:
-    
-    
-TODO:
-    
-    
-Bugs:
-    
-    
-Questions:
-    
-    
-Steps to reproduce:
-    
-    
-To debug with:
-    
-    `;
-
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "mantistodo" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('mantistodo.newmantistodo', async () => {
-		// The code you place here will be executed every time your command is executed
+	let disposable = vscode.commands.registerCommand('todogenerator.generate_todo', async () => {
 		let baseFolderPath = vscode.workspace.getConfiguration().get<string>(baseFolderPathConf) as string;
 		if (!fs.existsSync(baseFolderPath)) {		
 			const newBaseFolderPath = (await vscode.window.showOpenDialog({
@@ -61,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		const todoName = await vscode.window.showInputBox({
 			placeHolder: "My Task",
-			prompt: "Mantis TODO name"
+			prompt: "Enter TODO Name"
 		});
 		if (todoName === undefined) { return; } 
 			
@@ -78,7 +44,8 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		const filePath = path.join(folderPath, todoName + " TODO.txt");
-		await fs.promises.writeFile(filePath, todoBoilerplateText);
+		const todoText = vscode.workspace.getConfiguration().get<string>(todoTextConf) as string;
+		await fs.promises.writeFile(filePath, todoText);
 
 		let emptyPatchSuffix = vscode.workspace.getConfiguration().get<string>(emptyPatchSuffixConf);
 
@@ -99,5 +66,4 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(disposable);
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}

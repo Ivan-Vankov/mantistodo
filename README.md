@@ -8,8 +8,9 @@ Creates a boilerplate TODO.txt file and an optional .patch file.
 
 ## Extension Settings
 
-* `conf.mantistodo.baseFolderPath`: Folder path under which the TODOs will be created. If invalid a folder selection window will pop-up during TODO creation and the selected folder will be set as the base folder.
-* `conf.mantistodo.emptyPatchSuffix`: If non-empty will also create an empty .patch file with the specified suffix.
+* `conf.todogenerator.todoText`: The boilerplate TODO text that will be written in the TODO .txt file.
+* `conf.todogenerator.baseFolderPath`: Folder path under which the TODOs will be created. If invalid a folder selection window will pop-up during TODO creation and the selected folder will be set as the base folder.
+* `conf.todogenerator.emptyPatchSuffix`: If non-empty will also create an empty .patch file with the specified suffix.
 
 ## Setup - Development
 
