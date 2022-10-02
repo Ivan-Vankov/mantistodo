@@ -2,7 +2,15 @@
   "name": "mantistodo",
   "displayName": "Mantis TODO generator",
   "description": "Boilerplate TODO .txt file generator",
-  "version": "0.0.1",
+  "publisher": "Vaflov",
+  "keywords": [
+    "TODO"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ivan-Vankov/mantistodo"
+  },
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.71.0"
   },
