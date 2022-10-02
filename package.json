@@ -1,7 +1,7 @@
 {
   "name": "mantistodo",
-  "displayName": "MantisTODO",
-  "description": "Mantis TODO generator",
+  "displayName": "Mantis TODO generator",
+  "description": "Boilerplate TODO .txt file generator",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.71.0"
@@ -12,31 +12,48 @@
   "activationEvents": [
     "onCommand:mantistodo.newmantistodo"
   ],
+  "icon": "images/icon.png",
   "main": "./dist/extension.js",
   "contributes": {
     "configuration": [
       {
-          "title": "MantisTODO",
+          "title": "Mantis TODO",
           "properties": {
               "conf.mantistodo.baseFolderPath": {
-                  "type": "string",
-                  "default": "",
-                  "description": "The file storage path to BIF-Source folder.",
-                  "scope": "application"
+                "type": "string",
+                "default": "",
+                "description": "The base folder path for TODOs.",
+                "scope": "application"
+              },
+              "conf.mantistodo.emptyPatchSuffix": {
+                "type": "string",
+                "default": "0",
+                "description": "Suffix for the optional .patch file. Keep empty to skip .patch file creation.",
+                "scope": "application"
               }
           }
       }
     ],
     "commands": [
       {
-        "command": "mantistodo.newmantistodo",
-        "title": "New Mantis TODO"
-      }
+				"command": "mantistodo.newmantistodo",
+				"title": "New Mantis TODO",
+				"shortTitle": "Mantis TODO",
+				"category": "Create"
+			}
     ],
+		"menus": {
+			"file/newFile": [
+				{
+					"command": "mantistodo.newmantistodo",
+          "description": "test" 
+				}
+			]
+    },
     "keybindings": [
       {
-          "command": "mantistodo.newmantistodo",
-          "key": "ctrl+alt+m"
+        "command": "mantistodo.newmantistodo",
+        "key": "ctrl+alt+m"
       }
     ]
   },
